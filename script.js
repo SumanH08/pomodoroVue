@@ -6,7 +6,8 @@
 var pomodoro = new Vue({
   el: "#pomodoro",
   data: {
-    startTime: 1500
+    startTime: 1500,
+    timeNow: 0
   },
   methods: {
     time: function() {
@@ -20,6 +21,8 @@ var pomodoro = new Vue({
       var currSec = this.checkSecond(this.startTime % 60);
       var currTime = currMin + ":" + currSec;
       console.log(currTime);
+      this.timeNow = currTime;
+
     },
     checkSecond: function(sec) {
       if (sec < 10 && sec >= 0) {
