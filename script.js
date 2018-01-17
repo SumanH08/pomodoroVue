@@ -7,7 +7,7 @@ var pomodoro = new Vue({
   el: "#pomodoro",
   data: {
     startTime: 1500,
-    timeNow: 0
+    timeNow: "25:00"
   },
   methods: {
     time: function() {
@@ -15,12 +15,11 @@ var pomodoro = new Vue({
     },
     timer: function() {
       // countdown minutes and seconds
-      console.log(this.startTime--);
+      this.startTime--;
       console.log("Inside methods");
       var currMin = parseInt(this.startTime / 60);
       var currSec = this.checkSecond(this.startTime % 60);
       var currTime = currMin + ":" + currSec;
-      console.log(currTime);
       this.timeNow = currTime;
 
     },
