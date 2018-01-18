@@ -2,7 +2,7 @@
 //   props: ["seconds"],
 //   template: "<p>{{parseInt(seconds/60)}}:{{seconds%60}}</p>"
 // })
-var myVar;
+var myVar, breakVar;
 var pomodoro = new Vue({
   el: "#pomodoro",
   data: {
@@ -26,6 +26,7 @@ var pomodoro = new Vue({
       this.timeNow = currTime;
       if(currTime == "00:00" || currTime == "0:00"){
         clearInterval(myVar);
+        clearInterval(breakVar);
         console.log("Inside curr time becoming 0")
         this.play;
       }
@@ -41,6 +42,10 @@ var pomodoro = new Vue({
     },
     play: function(){
       this.$refs.beep.play();
+    },
+    breakTime: function(){
+      this.startTime = 300;
+      breakVar = setInterval(this.timer, 1000);
     }
   }
 
