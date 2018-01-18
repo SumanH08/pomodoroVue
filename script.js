@@ -2,7 +2,7 @@
 //   props: ["seconds"],
 //   template: "<p>{{parseInt(seconds/60)}}:{{seconds%60}}</p>"
 // })
-
+var myVar;
 var pomodoro = new Vue({
   el: "#pomodoro",
   data: {
@@ -14,7 +14,7 @@ var pomodoro = new Vue({
      this.startTime = (value*60);
    },
     time: function() {
-      setInterval(this.timer, 1000);
+      myVar = setInterval(this.timer, 1000);
     },
     timer: function() {
       // countdown minutes and seconds
@@ -24,7 +24,11 @@ var pomodoro = new Vue({
       var currSec = this.checkSecond(this.startTime % 60);
       var currTime = currMin + ":" + currSec;
       this.timeNow = currTime;
-
+      if(currTime == "00:00" || currTime == "0:00"){
+        clearInterval(myVar);
+        console.log("Inside curr time becoming 0")
+        this.play;
+      }
     },
     checkSecond: function(sec) {
       if (sec < 10 && sec >= 0) {
@@ -34,6 +38,9 @@ var pomodoro = new Vue({
         sec = "59";
       }
       return sec;
+    },
+    play: function(){
+      this.$refs.beep.play();
     }
   }
 

@@ -13,6 +13,7 @@
     <input v-on:input="handleInput($event.target.value)" placeholder="insert time here" />
     <button v-on:click="time">Start</button>
     <p>{{ timeNow }}</p>
+    <audio ref="beep" src="sounds/beeps.mp3"></audio>
   </div>
 
 </body>
