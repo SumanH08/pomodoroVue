@@ -6,10 +6,13 @@
 var pomodoro = new Vue({
   el: "#pomodoro",
   data: {
-    startTime: 1500,
-    timeNow: "25:00"
+    startTime: "",
+    timeNow: this.timeNow,
   },
   methods: {
+    handleInput: function(value) {
+     this.startTime = (value*60);
+   },
     time: function() {
       setInterval(this.timer, 1000);
     },
